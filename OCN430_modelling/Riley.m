@@ -88,6 +88,16 @@ end
 figure(2);
 plot(day, Phmod, YD, Ph, 'or');ylabel('Phytoplankton');xlabel('Yearday')
 
+% sensitivity analysis - get upper and lower bounds 
+for j in 1:359
+    Phmod(j) = (p*I0d(j))/(kd(j)*z1d(j)) * (1 - exp(-kd(j)*z1d(j))) * N1d(j) * V1d(j);
+    Rmod(j) = R0 * exp(r*Td(j));
+    Gmod(j) = g*Zd(j);
+    dP(j) = Pmod(j)*(Phmod(j)-Rmod(j)-Gmod(j));
+    Pmod(j+1) = P(j) + dP(j)*dt;
+
+end
+
 
 
 
