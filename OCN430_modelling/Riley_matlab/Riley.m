@@ -63,7 +63,7 @@ V1d = interp1(day, 1:15:360, V1)
 Td = interp1(day, 1:15:360, T)
 Zd = interp1(day, 1:15:360, Z)
 
-# pre-assign arrays for results of model
+% pre-assign arrays for results of model
 Pmod = zeros(360,1);
 Phmod = zeros(360,1);
 Rmod = zeros(360,1);
@@ -74,7 +74,7 @@ P(1) = P0;
 
 
 % integrate the model forward in time
-for j in 1:359
+for j =1:359;
     Phmod(j) = (p*I0d(j))/(kd(j)*z1d(j)) * (1 - exp(-kd(j)*z1d(j))) * N1d(j) * V1d(j);
     Rmod(j) = R0 * exp(r*Td(j));
     Gmod(j) = g*Zd(j);
@@ -86,7 +86,7 @@ end
 % plot the model result vs the observations
 
 figure(2);
-plot(day, Phmod, YD, Ph, 'or');ylabel('Phytoplankton');xlabel('Yearday')
+plot(day, Phmod, YD, P, 'or');ylabel('Phytoplankton');xlabel('Yearday')
 
 
 
